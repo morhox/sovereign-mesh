@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  node_alpha:
+    build: .
+    restart: always
+    ports:
+      - "8004:8000"
+    environment:
+      - NODE_ID=Alpha-Cloud
+      - PORT=8000
+      - DB_PATH=/data/alpha.db
+      - SHARED_SECRET=sovereign-mesh-secret-key-2026
+    volumes:
+      - alpha_data:/data
+
+  node_beta:
+    build: .
+    restart: always
+    ports:
+      - "8005:8000"
+    environment:
+      - NODE_ID=Beta-Cloud
+      - PORT=8000
+      - DB_PATH=/data/beta.db
+      - SHARED_SECRET=sovereign-mesh-secret-key-2026
+    volumes:
+      - beta_data:/data
+
+volumes:
+  alpha_data:
+  beta_data:
